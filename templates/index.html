@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}
+  Star Wars universe planets
+{% endblock %}
+{% block page_title %}
+  <b>Star Wars</b> universe planets
+{% endblock %}
+{% block content %}
+  <button class="btn btn-default statistics-modal-activator pull-right" type="button">
+    Planet statistics
+  </button>
+  <div id="content-wrapper">
+    <section class="row">
+      {% block nav_buttons %}{% endblock %}
+    </section>
+    <section class="row">
+      {% block table %}{% endblock %}
+    </section>
+  </div>
+{% endblock %}
+{% block modals %}
+  <section class="modal fade" id="residents-modal" tabindex="-1" role="dialog" aria-labelledby="residents-modal-title">
+    <article class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+      </div>
+    </article>
+  </section>
+  <section class="modal fade" id="statistics-modal" tabindex="-1" role="dialog" aria-labelledby="statistics-modal-title">
+    <article class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="statistics-modal-title">Planet votes</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped table-responsive col-xs-12">
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </section>
+{% endblock %}

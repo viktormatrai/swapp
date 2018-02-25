@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <section id="flash-wrapper">
+    {% for message in get_flashed_messages() %}
+      <div class="flashed-message bg-warning">
+        <p class="text-danger">{{ message }}</p>
+      </div>
+    {% endfor %}
+    </section>
+    <header>
+      <a href="/"><h1 id="logo" class="pull-left"><b>SWP</b></h1></a>
+      {% if session.user %}
+        <a role="button" href="/logout" class="btn btn-sm btn-primary pull-right">Logout</a>
+        <p class="pull-right">{{ session.user }} | </p>
+      {% else %}
+        <a role="button" href="/register" class="btn btn-sm btn-primary pull-right">Register</a>
+        <a role="button" href="/login" class="btn btn-sm btn-primary pull-right">Login</a>
+      {% endif %}
+    </header>
+    <section class="container">
+      <h2>{% block page_title %}{% endblock %}</h2>
+      {% block content %}{% endblock %}
+    </section>
+    {% block modals %}{% endblock %}
+  </body>
+</html>

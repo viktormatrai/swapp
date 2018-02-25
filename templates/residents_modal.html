@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="residents-modal-title">{{ data.modal_title }}</h4>
+</div>
+<div class="modal-body">
+  <table class="table table-bordered table-striped table-responsive col-xs-12">
+    <tr>
+      <th>Name</th>
+      <th>Height</th>
+      <th>Mass</th>
+      <th>Skin color</th>
+      <th>Hair color</th>
+      <th>Eye color</th>
+      <th>Birth year</th>
+      <th>Gender</th>
+    </tr>
+    {% for resident in data.residents %}
+    <tr>
+      <td>{{ resident.name }}</td>
+      <td>{{ resident.height }}</td>
+      <td>{{ resident.mass }}</td>
+      <td>{{ resident.skin_color }}</td>
+      <td>{{ resident.hair_color }}</td>
+      <td>{{ resident.eye_color }}</td>
+      <td>{{ resident.birth_year }}</td>
+      <td>{{ resident.gender }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>

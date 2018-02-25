@@ -1,0 +1,34 @@
+{% extends  "layout.html" %}
+{% block title %}
+  Register - SW Planets
+{% endblock %}
+{% block page_title %}
+  Register
+{% endblock %}
+{% block content %}
+  <form action="/register" method="POST" class="form-horizontal">
+    <div class="form-group">
+      <label for="username" class="col-xs-2 control-label">Username</label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-xs-2 control-label">Password</label>
+      <div class="col-xs-8">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password-verify" class="col-xs-2 control-label">Verify password</label>
+      <div class="col-xs-8">
+        <input type="password" class="form-control" id="password-verify" name="password_verify" placeholder="Verify password" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-10">
+        <button type="submit" class="btn btn-primary pull-right">Register</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

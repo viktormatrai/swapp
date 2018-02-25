@@ -1,0 +1,84 @@
+{% if parent_template %}
+  {% extends parent_template %}
+{% endif %}
+{% if not parent_template %}
+  <section class="row">
+{% endif %}
+{% block nav_buttons %}
+  <button
+    id="prev-page"
+    type="button"
+    class="btn btn-primary"
+    data-url="{{ data.previous }}"
+    {% if data.previous %}{% else %}disabled{% endif %}>
+    Previous page
+  </button>
+  <button
+    id="next-page"
+    type="button"
+    class="btn btn-primary"
+    data-url="{{ data.next }}"
+    {% if data.next %}{% else %}disabled{% endif %}>
+    Next page
+  </button>
+{% endblock %}
+{% if not parent_template %}
+  </section>
+  <section id="table-wrapper" class="row">
+{% endif %}
+{% block table %}
+  <table class="table table-bordered table-striped table-responsive col-xs-12">
+    <tr>
+      <th>Name</th>
+      <th>Diameter</th>
+      <th>Climate</th>
+      <th>Terrain</th>
+      <th>Water</th>
+      <th>Population</th>
+      <th>Residents</th>
+      {% if session.user %}
+      <th>Vote</th>
+      {% endif %}
+    </tr>
+    {% for planet in data.results %}
+    <tr>
+      <td>{{ planet.name }}</td>
+      <td>{{ planet.diameter }}</td>
+      <td>{{ planet.climate }}</td>
+      <td>{{ planet.terrain }}</td>
+      <td>{{ planet.surface_water }} {% if planet.surface_water != 'unknown' %}%{% endif %}</td>
+      <td>{{ planet.population }}</td>
+      <td>
+        {% if planet.residents %}
+        <button
+          class="btn btn-default btn-block residents-modal-activator"
+          type="button"
+          data-purl="{{ planet.url }}">
+          {{- planet.residents|length -}}
+          {%- if planet.residents|length > 1 %}
+          residents
+          {%- else %}
+          resident
+          {%- endif -%}
+        </button>
+        {% else %}
+        No known residents
+        {% endif %}
+      </td>
+      {% if session.user %}
+      <td>
+        <button
+          class="btn btn-default btn-block vote-btn"
+          type="button"
+          data-pname="{{ planet.name }}">
+          Vote
+        </button>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+{% if not parent_template %}
+  </section>
+{% endif %}
